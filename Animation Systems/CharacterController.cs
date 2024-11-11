@@ -15,5 +15,13 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
             animator.SetTrigger("JumpTrigger");
+		
+		if (target != null)
+		{
+			Vector3 lookPos = target.position - transform.position;
+			Quaternion rotation = Quaternion.LookRotation(lookPos);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * lookSpeed);
+		}
     }
+
 }
